@@ -1,0 +1,2 @@
+# Unity AI
+This is simple repository where I push all my AI related scripts and algorithm implementations in Unity. It will grow with time (hopefully!), but feel free to fork or suggest any improvements on your own. :)
