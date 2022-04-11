@@ -26,20 +26,20 @@ namespace AI.Steering_Behaviors.Controllers
         private void FixedUpdate()
         {
             Vector3 velocity = Vector3.zero;
-            float rotation = 0f;
+            Quaternion rotation = Quaternion.identity;
 
             foreach (SteeringBehavior steeringBehavior in _steeringBehaviors)
             {
                 SteeringData steeringData = steeringBehavior.GetSteering(this);
-                velocity += steeringData.linear * Time.deltaTime;
-                rotation += steeringData.angular * Time.deltaTime;
+                velocity += steeringData.linear;
+                rotation *= steeringData.angular;
             }
         
             _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity + velocity, _maxVelocity);
-            if (rotation != 0)
-                _rigidbody.rotation *= Quaternion.Euler(0, rotation, 0);
+            if (rotation != Quaternion.identity)
+                _rigidbody.MoveRotation(Quaternion.Lerp(_rigidbody.rotation, _rigidbody.rotation * rotation, Time.time));
             else if (_rigidbody.velocity.sqrMagnitude > 0.01f)
-                _rigidbody.rotation = Quaternion.Lerp(_rigidbody.rotation, Quaternion.LookRotation(_rigidbody.velocity), 0.75f);
+                _rigidbody.MoveRotation(Quaternion.Lerp(_rigidbody.rotation, Quaternion.LookRotation(_rigidbody.velocity), 0.75f));
         }
 
         public void Stop()

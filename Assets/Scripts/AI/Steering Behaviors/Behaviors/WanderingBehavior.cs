@@ -10,7 +10,7 @@ namespace AI.Steering_Behaviors.Behaviors
         public override SteeringData GetSteering(SteeringController controller)
         {
             _steeringData.linear = controller.transform.forward * _speed;
-            _steeringData.angular = controller.transform.rotation.y + Random.Range(-1.0f, 1.0f) * _maxRotation;
+            _steeringData.angular = Quaternion.Euler(0, Random.Range(-1.0f, 1.0f) * _maxRotation, 0);
             return _steeringData;
         }
     }

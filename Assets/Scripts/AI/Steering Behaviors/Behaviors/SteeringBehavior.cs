@@ -9,15 +9,15 @@ namespace AI.Steering_Behaviors.Behaviors
     public class SteeringData
     {
         public Vector3 linear;
-        public float angular;
+        public Quaternion angular;
 
         public SteeringData()
         {
             linear = Vector3.zero;
-            angular = 0;
+            angular = Quaternion.identity;
         }
 
-        public SteeringData(Vector3 linear, float angular)
+        public SteeringData(Vector3 linear, Quaternion angular)
         {
             this.linear = linear;
             this.angular = angular;
