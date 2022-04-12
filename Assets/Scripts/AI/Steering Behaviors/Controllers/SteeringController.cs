@@ -4,26 +4,23 @@ using UnityEngine;
 namespace AI.Steering_Behaviors.Controllers
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class SteeringController : MonoBehaviour
+    public class SteeringController : AIController
     {
-        public Rigidbody Body => _rigidbody;
-    
-        [SerializeField] private float _maxVelocity = 10f;
-        [SerializeField] private float _drag = 1f;
+        public override Vector3 Position => _rigidbody.position;
+        public override Quaternion Rotation => _rigidbody.rotation;
+        public override Vector3 Velocity => _rigidbody.velocity;
 
-        public float MaxVelocity => _maxVelocity;
+        protected Rigidbody _rigidbody;
+        protected SteeringBehavior[] _steeringBehaviors;
 
-        private Rigidbody _rigidbody;
-        private SteeringBehavior[] _steeringBehaviors;
-
-        private void Start()
+        protected virtual void Start()
         {
             _rigidbody = GetComponent<Rigidbody>();
             _steeringBehaviors = GetComponents<SteeringBehavior>();
             _rigidbody.drag = _drag;
         }
 
-        private void FixedUpdate()
+        protected virtual void FixedUpdate()
         {
             Vector3 velocity = Vector3.zero;
             Quaternion rotation = Quaternion.identity;
@@ -37,9 +34,9 @@ namespace AI.Steering_Behaviors.Controllers
         
             _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity + velocity, _maxVelocity);
             if (rotation != Quaternion.identity)
-                _rigidbody.MoveRotation(Quaternion.Lerp(_rigidbody.rotation, _rigidbody.rotation * rotation, Time.time));
+                _rigidbody.rotation = Quaternion.Lerp(_rigidbody.rotation, _rigidbody.rotation * rotation, Time.time);
             else if (_rigidbody.velocity.sqrMagnitude > 0.01f)
-                _rigidbody.MoveRotation(Quaternion.Lerp(_rigidbody.rotation, Quaternion.LookRotation(_rigidbody.velocity), 0.75f));
+                _rigidbody.rotation = Quaternion.Lerp(_rigidbody.rotation, Quaternion.LookRotation(_rigidbody.velocity), 0.75f);
         }
 
         public void Stop()

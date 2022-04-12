@@ -3,15 +3,12 @@ using UnityEngine;
 
 namespace AI.Steering_Behaviors.Behaviors
 {
-    public class SeekBehavior : SteeringBehavior
+    public class SeekBehavior : TargetSteeringBehavior
     {
-        [SerializeField] protected Transform _target;
-        [SerializeField] protected float _speed = 5.0f;
-    
         public override SteeringData GetSteering(SteeringController controller)
         {
-            Vector3 dirToTarget = _target.position - controller.transform.position;
-            _steeringData.linear = dirToTarget.normalized * _speed;
+            Vector3 dirToTarget = _target.Position - controller.transform.position;
+            _steeringData.linear = dirToTarget.normalized * _acceleration;
             _steeringData.angular = Quaternion.identity;
             return _steeringData;
         }

@@ -8,7 +8,7 @@ namespace AI.Steering_Behaviors.Behaviors
         [SerializeField] private float _thresholdDistance = 5.0f;
         public override SteeringData GetSteering(SteeringController controller)
         {
-            Vector3 dirToTarget = _target.position - controller.transform.position;
+            Vector3 dirToTarget = _target.Position - controller.transform.position;
             if (dirToTarget.magnitude >= _thresholdDistance)
             {
                 controller.Stop();
