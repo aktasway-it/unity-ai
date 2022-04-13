@@ -7,6 +7,7 @@ namespace AI.Steering_Behaviors.Controllers
     public class SteeringController : AIController
     {
         public override Vector3 Position => _rigidbody.position;
+        public override Vector3 Direction => transform.forward;
         public override Quaternion Rotation => _rigidbody.rotation;
         public override Vector3 Velocity => _rigidbody.velocity;
 
