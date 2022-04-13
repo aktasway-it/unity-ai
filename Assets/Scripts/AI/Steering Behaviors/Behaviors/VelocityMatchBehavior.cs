@@ -9,7 +9,6 @@ namespace AI.Steering_Behaviors.Behaviors
         {
             Vector3 deltaVelocity = Vector3.ClampMagnitude(_target.Velocity - controller.Velocity, _acceleration);
             _steeringData.linear = deltaVelocity;
-            _steeringData.angular = Quaternion.identity;
             return _steeringData;
         }
     }

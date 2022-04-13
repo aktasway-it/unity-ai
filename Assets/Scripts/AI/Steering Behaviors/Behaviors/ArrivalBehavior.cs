@@ -13,7 +13,6 @@ namespace AI.Steering_Behaviors.Behaviors
             {
                 controller.Stop();
                 _steeringData.linear = Vector3.zero;
-                _steeringData.angular = Quaternion.identity;
                 return _steeringData;
             }
         

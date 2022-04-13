@@ -18,7 +18,6 @@ namespace AI.Steering_Behaviors.Behaviors
 
             Vector3 futurePosition = _target.Position + _target.Direction * targetSpeed * predictionTime;
             _steeringData.linear = (futurePosition - controller.Position) * _acceleration;
-            _steeringData.angular = Quaternion.identity;
             return _steeringData;
         }
     }

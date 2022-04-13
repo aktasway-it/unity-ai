@@ -9,7 +9,6 @@ namespace AI.Steering_Behaviors.Behaviors
         {
             Vector3 dirToTarget = _target.Position - controller.transform.position;
             _steeringData.linear = dirToTarget.normalized * _acceleration;
-            _steeringData.angular = Quaternion.identity;
             return _steeringData;
         }
     }
