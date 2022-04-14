@@ -1,4 +1,5 @@
 using AI.Steering_Behaviors.Behaviors;
+using AI.Steering_Behaviors.Data;
 using UnityEngine;
 
 namespace AI.Steering_Behaviors.Controllers
@@ -18,6 +19,11 @@ namespace AI.Steering_Behaviors.Controllers
         {
             _rigidbody = GetComponent<Rigidbody>();
             _steeringBehaviors = GetComponents<SteeringBehavior>();
+            foreach (SteeringBehavior steeringBehavior in _steeringBehaviors)
+            {
+                steeringBehavior.Init(this);
+            }
+
             _rigidbody.drag = _drag;
         }
 

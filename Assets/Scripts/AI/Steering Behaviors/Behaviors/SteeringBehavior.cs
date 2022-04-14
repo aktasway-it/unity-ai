@@ -1,30 +1,15 @@
 using AI.Steering_Behaviors.Controllers;
+using AI.Steering_Behaviors.Data;
 using UnityEngine;
 
 namespace AI.Steering_Behaviors.Behaviors
 {
-    public class SteeringData
-    {
-        public Vector3 linear;
-        public Quaternion angular;
-
-        public SteeringData()
-        {
-            linear = Vector3.zero;
-            angular = Quaternion.identity;
-        }
-
-        public SteeringData(Vector3 linear, Quaternion angular)
-        {
-            this.linear = linear;
-            this.angular = angular;
-        }
-    }
-
     public abstract class SteeringBehavior : MonoBehaviour
     {
         [SerializeField] protected float _acceleration;
         protected SteeringData _steeringData = new SteeringData();
+        
+        public virtual void Init(SteeringController controller) { }
         public abstract SteeringData GetSteering(SteeringController controller);
     }
 }
