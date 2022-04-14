@@ -1576,6 +1576,19 @@ MonoBehaviour:
   _acceleration: 10
   _target: {fileID: 462041054}
   _thresholdDistance: 0.5
+--- !u!114 &976143531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976143529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f6ef4dd5db1e7559f3ffa07d015636, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _acceleration: 90
 --- !u!114 &976143534 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7492856185106806879, guid: 5c7e52573d3b00a89a482d593998c033, type: 3}
@@ -1702,6 +1715,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7104346789269880100, guid: 011fb54a425aa9e518dd1f3e1577030c, type: 3}
+      propertyPath: _maxVelocity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7104346789269880100, guid: 011fb54a425aa9e518dd1f3e1577030c, type: 3}
       propertyPath: _acceleration
       value: 20
       objectReference: {fileID: 0}
@@ -1728,7 +1745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aebf49a143f345b2abe4fa54d997bdbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _acceleration: 0
+  _acceleration: 5
   _target: {fileID: 1096430597}
   _thresholdDistance: 15
 --- !u!1 &1096430592 stripped
@@ -1751,6 +1768,19 @@ MonoBehaviour:
   _acceleration: 10
   _target: {fileID: 976143534}
   _thresholdDistance: 5
+--- !u!114 &1096430594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096430592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f6ef4dd5db1e7559f3ffa07d015636, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _acceleration: 90
 --- !u!114 &1096430597 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7104346789269880100, guid: 011fb54a425aa9e518dd1f3e1577030c, type: 3}

@@ -7,7 +7,7 @@ namespace AI.Steering_Behaviors.Behaviors
     {
         public override SteeringData GetSteering(SteeringController controller)
         {
-            Vector3 dirToTarget = _target.Position - controller.transform.position;
+            Vector3 dirToTarget = _target.Position - controller.Position;
             _steeringData.linear = dirToTarget.normalized * _acceleration;
             return _steeringData;
         }

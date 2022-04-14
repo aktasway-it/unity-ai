@@ -36,8 +36,6 @@ namespace AI.Steering_Behaviors.Controllers
             _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity + velocity, _maxVelocity);
             if (rotation != Quaternion.identity)
                 _rigidbody.rotation = Quaternion.Lerp(_rigidbody.rotation, _rigidbody.rotation * rotation, Time.time);
-            else if (_rigidbody.velocity.sqrMagnitude > 0.01f)
-                _rigidbody.rotation = Quaternion.Lerp(_rigidbody.rotation, Quaternion.LookRotation(_rigidbody.velocity), 0.75f);
         }
 
         public void Stop()
