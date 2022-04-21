@@ -1,10 +1,10 @@
-using System;
 using System.Collections.Generic;
+using AI.Steering_Behaviors.Behaviors.Base;
 using AI.Steering_Behaviors.Controllers;
 using AI.Steering_Behaviors.Data;
 using UnityEngine;
 
-namespace AI.Steering_Behaviors.Behaviors
+namespace AI.Steering_Behaviors.Behaviors.Movement
 {
     public class PathFollowBehavior : SteeringBehavior
     {

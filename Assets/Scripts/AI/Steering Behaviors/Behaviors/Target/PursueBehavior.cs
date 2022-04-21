@@ -1,8 +1,9 @@
+using AI.Steering_Behaviors.Behaviors.Base;
 using AI.Steering_Behaviors.Controllers;
 using AI.Steering_Behaviors.Data;
 using UnityEngine;
 
-namespace AI.Steering_Behaviors.Behaviors
+namespace AI.Steering_Behaviors.Behaviors.Target
 {
     public class PursueBehavior : TargetSteeringBehavior
     {
