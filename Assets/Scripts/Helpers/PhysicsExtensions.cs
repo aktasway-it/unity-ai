@@ -1,21 +1,23 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class PhysicsExtensions
+namespace Helpers
 {
-    public static List<RaycastHit> ConeCast(Vector3 origin, float distance, Vector3 direction, float angle, LayerMask layerMask)
+    public static class PhysicsExtensions
     {
-        RaycastHit[] raycastHits = Physics.SphereCastAll(origin, distance, direction, distance, layerMask);
-        List<RaycastHit> coneCastHits = new List<RaycastHit>();
-        for (int i = 0; i < raycastHits.Length; i++)
+        public static List<RaycastHit> ConeCast(Vector3 origin, float distance, Vector3 direction, float angle, LayerMask layerMask)
         {
-            Vector3 hitDirection = (raycastHits[i].point - origin).normalized;
-            float hitAngle = Vector3.Angle(direction, hitDirection);
-            if (hitAngle < angle)
-                coneCastHits.Add(raycastHits[i]);
-        }
+            RaycastHit[] raycastHits = Physics.SphereCastAll(origin, distance, direction, distance, layerMask);
+            List<RaycastHit> coneCastHits = new List<RaycastHit>();
+            for (int i = 0; i < raycastHits.Length; i++)
+            {
+                Vector3 hitDirection = (raycastHits[i].point - origin).normalized;
+                float hitAngle = Vector3.Angle(direction, hitDirection);
+                if (hitAngle < angle)
+                    coneCastHits.Add(raycastHits[i]);
+            }
                     
-        return coneCastHits;
+            return coneCastHits;
+        }
     }
 }
