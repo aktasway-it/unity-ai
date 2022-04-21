@@ -7,22 +7,28 @@ namespace AI.Steering_Behaviors.Behaviors
     public class WanderingBehavior : SteeringBehavior
     {
         [SerializeField] private float _maxRotation = 30.0f;
-        [SerializeField] private float _changeRotationEvery = 2.0f;
+        [SerializeField] private float _changeDirectionEvery = 2.0f;
 
-        private float _timeToNextRotation = 0.0f;
-        private float _currentRotationAngle = 0.0f;
-        
+        private float _timeToNextTarget = 0.0f;
+        private Vector3 _currentDirectionVector;
+
+        public override void Init(SteeringController controller)
+        {
+            base.Init(controller);
+            _currentDirectionVector = transform.forward;
+        }
+
         public override SteeringData GetSteering(SteeringController controller)
         {
-            if (_timeToNextRotation >= _changeRotationEvery)
+            if (_timeToNextTarget >= _changeDirectionEvery)
             {
-                _timeToNextRotation = 0.0f;
-                _currentRotationAngle = Random.Range(-1.0f, 1.0f) * _maxRotation;
+                _timeToNextTarget = 0.0f;
+                _currentDirectionVector = Quaternion.AngleAxis(Random.Range(-1.0f, 1.0f) * _maxRotation, Vector3.up) * _currentDirectionVector;
             }
-            _timeToNextRotation += Time.deltaTime;
             
-            _steeringData.linear = controller.transform.forward * _acceleration;
-            _steeringData.angular = Quaternion.Euler(0,  _currentRotationAngle * (_timeToNextRotation / _changeRotationEvery) * Time.deltaTime, 0);
+            _timeToNextTarget += Time.deltaTime;
+            
+            _steeringData.linear = _currentDirectionVector * _acceleration;
             return _steeringData;
         }
     }
