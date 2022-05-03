@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace AI.FSM.Advanced.States
+namespace AI.FSM.Advanced.States.Guard
 {
     public class AttackFSMState : FSMState<GuardFSMAdvanced>
     {
