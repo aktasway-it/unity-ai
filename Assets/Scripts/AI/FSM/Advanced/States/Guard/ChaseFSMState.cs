@@ -15,7 +15,7 @@ namespace AI.FSM.Advanced.States.Guard
         public override void UpdateState()
         {
             base.UpdateState();
-            if (!_fsm.CanSeePlayer())
+            if (!_fsm.PlayerOnSight || !_fsm.Player)
             {
                 _fsm.ChangeState("Patrol");
                 return;

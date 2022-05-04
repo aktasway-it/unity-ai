@@ -26,7 +26,7 @@ namespace AI.FSM.Advanced.States.Guard
             if (Vector3.Distance(_fsm.transform.position, _waypoints[_currentWaypointIndex]) < 0.1f)
                 _currentWaypointIndex = (_currentWaypointIndex + 1) % _waypoints.Length;
 
-            if (_fsm.CanSeePlayer())
+            if (_fsm.PlayerOnSight)
             {
                 _fsm.ChangeState("Chase");
                 return;

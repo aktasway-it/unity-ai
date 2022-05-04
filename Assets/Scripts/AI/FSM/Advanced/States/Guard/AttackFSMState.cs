@@ -29,7 +29,7 @@ namespace AI.FSM.Advanced.States.Guard
 
             _fsm.LookAt(dir);
         
-            if (!_fsm.CanSeePlayer() || Vector3.Distance(_fsm.transform.position, _fsm.Player.position) > _attackEndDistance)
+            if (!_fsm.PlayerOnSight || Vector3.Distance(_fsm.transform.position, _fsm.Player.position) > _attackEndDistance)
             {
                 _fsm.ChangeState("Chase");
                 _attackReloadTimer = _attackReloadTime;

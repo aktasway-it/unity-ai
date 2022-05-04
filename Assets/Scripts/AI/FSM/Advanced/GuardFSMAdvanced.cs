@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using AI.FSM.Advanced.States;
 using AI.FSM.Advanced.States.Guard;
+using AI.Sensors;
 using Objects;
 using UnityEngine;
 
@@ -7,6 +9,7 @@ namespace AI.FSM.Advanced
 {
     public class GuardFSMAdvanced : FSMAdvanced<GuardFSMAdvanced>
     {
+        public bool PlayerOnSight { get; private set; }
         public float Speed => _speed;
         public Transform Player => _player;
     
@@ -18,12 +21,15 @@ namespace AI.FSM.Advanced
         [SerializeField] private float _bulletSpeed = 10f;
         [SerializeField] private Transform _bulletSpawner;
         [SerializeField] private Bullet _bulletPrefab;
-    
+
+        private SightSensor _sightSensor;
         private Transform _player;
 
         protected override void Initialize()
         {
             base.Initialize();
+            _sightSensor = GetComponent<SightSensor>();
+            _sightSensor.onSensorTriggered += OnSightSensorTriggered;
             _player = GameObject.FindWithTag("Player").transform;
             _states.Add("Patrol", new PatrolFSMState(this, _waypoints));
             _states.Add("Chase", new ChaseFSMState(this, _attackStartDistance));
@@ -31,20 +37,9 @@ namespace AI.FSM.Advanced
             ChangeState("Patrol");
         }
 
-        public bool CanSeePlayer()
+        private void OnSightSensorTriggered(List<GameObject> triggerObjects)
         {
-            if (!_player)
-                return false;
-        
-            Vector3 dir = (_player.position - transform.position).normalized;
-            if (Vector3.Angle(transform.forward, dir) < 60)
-            {
-                RaycastHit raycastHit;
-                Physics.Raycast(transform.position + dir, dir, out raycastHit, 100);
-                return raycastHit.collider && raycastHit.collider.CompareTag("Player");
-            }
-
-            return false;
+            PlayerOnSight = triggerObjects.Count > 0;
         }
 
         public void Move(Vector3 dir)
