@@ -41,7 +41,7 @@ namespace AI.Behavior_Trees.Core
             Node node = parent;
             while (node != null)
             {
-                value = GetData(key);
+                value = node.GetData(key);
                 if (value != null)
                     return value;
 
@@ -68,6 +68,20 @@ namespace AI.Behavior_Trees.Core
                 node = node.parent;
             }
             return false;
+        }
+
+        protected Node GetRootNode()
+        {
+            Node parentNode = parent;
+            while (parentNode != null)
+            {
+                if (parentNode.parent == null)
+                    return parentNode;
+
+                parentNode = parentNode.parent;
+            }
+
+            return parentNode;
         }
         
         private void Attach(Node node)

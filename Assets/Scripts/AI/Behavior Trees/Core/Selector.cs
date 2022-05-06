@@ -1,26 +1,31 @@
+using System.Collections.Generic;
+
 namespace AI.Behavior_Trees.Core
 {
     public class Selector : Node
     {
+        public Selector(List<Node> children) : base(children) { }
+        
         public override NodeState Evaluate()
         {
-            bool areChildrenStillRunning = false;
-            foreach (Node child in _children)
+            foreach (Node node in _children)
             {
-                switch (child.Evaluate())
+                switch (node.Evaluate())
                 {
-                    case NodeState.Running:
-                        areChildrenStillRunning = true;
+                    case NodeState.Failure:
                         continue;
                     case NodeState.Success:
                         _state = NodeState.Success;
                         return _state;
-                    case NodeState.Failure:
+                    case NodeState.Running:
+                        _state = NodeState.Running;
+                        return _state;
+                    default:
                         continue;
                 }
             }
 
-            _state = areChildrenStillRunning ? NodeState.Running : NodeState.Failure;
+            _state = NodeState.Failure;
             return _state;
         }
     }

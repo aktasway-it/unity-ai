@@ -1,9 +1,12 @@
 using System;
+using System.Collections.Generic;
 
 namespace AI.Behavior_Trees.Core
 {
     public class Sequence : Node
     {
+        public Sequence(List<Node> children) : base(children) { }
+        
         public override NodeState Evaluate()
         {
             bool areChildrenStillRunning = false;

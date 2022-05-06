@@ -215,7 +215,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 90566664}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.75, y: 2, z: -9.75}
+  m_LocalPosition: {x: 18.67, y: 2, z: -9.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1579661527}
@@ -718,7 +718,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh21148
+  m_Name: pb_Mesh17222
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5096,4 +5096,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
-  _waypoints: []
+  _waypoints:
+  - {x: -30.52, y: 2, z: -8.15}
+  - {x: -3.2, y: 2, z: -9.6}
+  - {x: -4.2, y: 2, z: -29.22}
+  - {x: 21.9, y: 2, z: -29.22}
+  - {x: 22.4, y: 2, z: -9.6}
+  - {x: 22.4, y: 2, z: 11.65}
+  - {x: -9.01, y: 2, z: 11.65}
+  _bullet: {fileID: 7523483652510564159, guid: 5dff4ac2a9dab8a309b8bbe0732a2514, type: 3}
+  _playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
